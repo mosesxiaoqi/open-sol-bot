@@ -1,45 +1,45 @@
-[project]
-name = "open-sol-bot"
-version = "0.2.0"
-description = "Open Solana Trading Bot"
+[project] # 项目基本配置部分
+name = "open-sol-bot" # 项目名称
+version = "0.2.0"  # 项目版本号
+description = "Open Solana Trading Bot"  # 项目描述：Solana 交易机器人
 authors = [
     { name = "mkdir700", email = "mkdir700@gmail.com" },
 ]
 requires-python = "==3.10.*"
 readme = "README.md"
 license = { text = "Apache-2.0" }
-dependencies = [
-    "solbot-cache",
-    "solbot-cache-preloader",
-    "solbot-common",
-    "solbot-db",
-    "solbot-services",
-    "solbot-tgbot",
-    "solbot-trading",
-    "solbot-wallet-tracker",
-    "solbot-yellowstone-grpc",
+dependencies = [ # 项目依赖列表
+    "solbot-cache", # 缓存模块
+    "solbot-cache-preloader", # 缓存预加载模块
+    "solbot-common", # 公共模块
+    "solbot-db", # 数据库模块
+    "solbot-services", # 服务模块
+    "solbot-tgbot", # Telegram 机器人模块
+    "solbot-trading", # 交易模块
+    "solbot-wallet-tracker", # 钱包追踪模块
+    "solbot-yellowstone-grpc", # Yellowstone GRPC 模块
 ]
 
-[tool.setuptools]
-packages = []
+[tool.setuptools] # setuptools 工具配置
+packages = [] # 不包含任何包（可能使用其他方式管理包）
 
-[tool.pytest.ini_options]
-log_cli = true
-log_cli_level = "INFO"
+[tool.pytest.ini_options] # pytest 配置选项
+log_cli = true # 启用命令行日志输出
+log_cli_level = "INFO" # 设置日志级别为 INFO
 
-[tool.uv.sources]
-solbot-trading = { path = "app/trading", editable = true }
-solbot-wallet-tracker = { path = "app/wallet-tracker", editable = true }
-solbot-cache-preloader = { path = "app/cache-preloader", editable = true }
-solbot-tgbot = { path = "app/tg-bot", editable = true }
-solbot-cache = { path = "libs/cache", editable = true }
-solbot-db = { path = "libs/db", editable = true }
-solbot-services = { path = "libs/services", editable = true }
-solbot-yellowstone-grpc = { path = "libs/yellowstone_grpc", editable = true }
-solbot-common = { path = "libs/common", editable = true }
+[tool.uv.sources] # UV 包管理器源配置
+solbot-trading = { path = "app/trading", editable = true } # 交易模块路径配置
+solbot-wallet-tracker = { path = "app/wallet-tracker", editable = true } # 钱包追踪模块路径
+solbot-cache-preloader = { path = "app/cache-preloader", editable = true } # 缓存预加载模块路径
+solbot-tgbot = { path = "app/tg-bot", editable = true }  # Telegram 机器人模块路径
+solbot-cache = { path = "libs/cache", editable = true } # 缓存库路径
+solbot-db = { path = "libs/db", editable = true } # 数据库库路径
+solbot-services = { path = "libs/services", editable = true } # 服务库路径
+solbot-yellowstone-grpc = { path = "libs/yellowstone_grpc", editable = true } # GRPC 库路径
+solbot-common = { path = "libs/common", editable = true } # 公共库路径
 
 [dependency-groups]
-dev = [
+dev = [ # 开发环境依赖
     "pytest>=8.3.4",
     "pre-commit>=4.0.1",
     "jupyter>=1.1.1",
@@ -54,7 +54,7 @@ target-version = "py310"
 line-length = 100
 
 [tool.ruff.lint]
-select = [
+select = [ # 启用的规则
     "E",   # pycodestyle errors
     "F",   # pyflakes
     "I",   # isort
@@ -69,31 +69,31 @@ select = [
 ignore = [
     "E501",  # line too long, handled by formatter
     # 以下是暂时忽略的错误，后续可以逐步修复
-    "RUF001",
-    "RUF002",
-    "RUF003",
-    "B007",  # Loop control variable not used within loop body
-    "B017",  # pytest.raises(Exception) should be considered evil
-    "B019",  # Use of functools.lru_cache on methods can lead to memory leaks
-    "B904",  # Within an except clause, raise exceptions with raise ... from err
-    "C408",  # Unnecessary dict call (rewrite as a literal)
-    "E402",  # Module level import not at top of file
-    "E712",  # Avoid equality comparisons to True/False
-    "F403",  # from module import * used; unable to detect undefined names
-    "F841",  # Local variable is assigned to but never used
-    "N801",  # Class name should use CapWords convention
-    "N802",  # Function name should be lowercase
-    "N805",  # First argument of a method should be named self
-    "N806",  # Variable in function should be lowercase
-    "N818",  # Exception name should be named with an Error suffix
-    "SIM105", # Use contextlib.suppress instead of try-except-pass
-    "SIM108", # Use ternary operator instead of if-else-block
-    "SIM117", # Use a single with statement with multiple contexts
-    "UP038",  # Use X | Y in isinstance call instead of (X, Y)
+    "RUF001", # 模糊的 Unicode 字符
+    "RUF002", # 模糊的 Unicode 字符序列
+    "RUF003", # 模糊的 Unicode 转义
+    "B007",  # 循环控制变量未在循环体中使用
+    "B017",  # pytest.raises(Exception) 被认为是有害的
+    "B019",  # 在方法上使用 functools.lru_cache 可能导致内存泄漏
+    "B904",  # 在 except 子句中，应使用 raise ... from err
+    "C408",  # 不必要的 dict 调用
+    "E402",  # 模块级导入不在文件顶部
+    "E712",  # 避免与 True/False 进行相等比较
+    "F403",  # 使用 from module import *；无法检测未定义的名称
+    "F841",  # 局部变量已分配但从未使用
+    "N801",  # 类名应使用 CapWords 约定
+    "N802",  # 函数名应该是小写
+    "N805",  # 方法的第一个参数应该命名为 self
+    "N806",  # 函数中的变量应该是小写
+    "N818",  # 异常名称应该以 Error 结尾
+    "SIM105", # 使用 contextlib.suppress 替代 try-except-pass
+    "SIM108", # 使用三元运算符替代 if-else 块
+    "SIM117", # 在单个 with 语句中使用多个上下文
+    "UP038",  # 在 isinstance 调用中使用 X | Y 而不是 (X, Y)
 ]
 
-[tool.ruff.lint.isort]
-known-first-party = ["app", "libs"]
+[tool.ruff.lint.isort]  # isort 导入排序配置
+known-first-party = ["app", "libs"]  # 已知的第一方模块
 
 [tool.ruff.format]
 quote-style = "double"
